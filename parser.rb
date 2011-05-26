@@ -1,9 +1,10 @@
 require 'rubygems'
 require 'mechanize'
 require 'awesome_print'
+require 'highline/import'
+MATNR= "307760" #Matrikelnummer hier eintragem
+PASSWD= HighLine::ask("Enter your password:  " ) { |q| q.echo = "" }
 
-MATNR= "307760" #Matrikelnummer hier eintrage
-PASSWD= "" #Passwort hier eintragen
 
 linalg =  Hash.new
 linalg["la"]=true
