@@ -5,15 +5,15 @@ require 'highline/import'
 require 'data_mapper'
 
 require 'models'
-
+DataMapper.finalize
 #User-Settings
 MATNR= "307760" #Matrikelnummer hier eintragem
 PASSWD= HighLine::ask("Enter your password:  " ) { |q| q.echo = "" }
 
 #Automated Setup
-DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, 'sqlite::memory:')
-DataMapper.auto_migrate!
+#DataMapper::Logger.new($stdout, :debug)
+DataMapper.setup(:default, "sqlite://#{Dir.pwd}/test.db")
+DataMapper.auto_upgrade!
 
 
 linalg =  Hash.new
@@ -65,7 +65,7 @@ lessons.each do |lesson|
   res =  page.body.scan lesson["table"]
   #ap res
   res.each do |result|
-    @res = Result.create(
+    @res = Result.new(
       :lecture => lesson["name"],
       :nr => result[0],
       :hw_result => result[1].to_i,
@@ -73,7 +73,18 @@ lessons.each do |lesson|
       :on_result => result[3],
       :on_possible => result[4]
     )
-    @res.save
+    have_with_0 = Result.first(:lecture => lesson["name"],:nr => result[0])
+    if have_with_0.nil?
+      puts "Saving result #{@res}"
+      ap @res
+      @res.save
+    elsif !have_with_0.nil? && result[1] != '' && have_with_0.hw_result == 0
+      puts "updating result #{have_with_0}"
+      ap have_with_0
+      have_with_0.update(:hw_result => result[1].to_i)
+    else
+      puts "already have result"
+    end
   end
-  ap Result.all
+  #ap Result.all
 end
