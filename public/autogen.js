@@ -1,5 +1,4 @@
 window.onload = function () {
-
     var r = Raphael(10, 10, 230, 230);
     r.g.piechart(110, 110, 100, [69,31]);
     var s = Raphael(250, 10, 230, 230);
