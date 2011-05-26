@@ -17,5 +17,6 @@ end
 
 get '/script.js' do
   @sum = Total.all
+  ap Result.all(:fields => [:lecture])
   erb :script
 end
