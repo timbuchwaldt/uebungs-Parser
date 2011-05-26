@@ -8,3 +8,10 @@ class Result
    property :on_possible, Integer, :default => 0
    property :on_result, Integer, :default => 0
  end
+class Total
+  include DataMapper::Resource
+  property :id,        Serial
+  property :lecture,     String,  :required => true   # Cannot be nil
+  property :possible, Integer
+  property :result, Integer, :default => 0
+end

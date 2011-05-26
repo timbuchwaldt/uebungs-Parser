@@ -10,5 +10,10 @@ DataMapper.setup(:default, "sqlite://#{Dir.pwd}/test.db")
 
 
 get '/' do
-  erb :index, :locals => {:greeting => "tim"}
+  @greeting = "tim"
+  erb :index
+end
+
+get '/script.js' do
+  erb :script
 end
