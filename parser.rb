@@ -41,6 +41,7 @@ fosap["results"] = "https://aprove.informatik.rwth-aachen.de/fosap11/student"
 
 lessons = [linalg,dua,fosap]
 #lessons = [linalg]
+Total.all.destroy
 lessons.each do |lesson|
   agent = Mechanize.new
   page = agent.get lesson["login"]
@@ -60,8 +61,11 @@ lessons.each do |lesson|
   #ap res
   pos = res[0][1].to_f
   have = res[0][0].to_f
-  #puts rate=((100/pos)*have).to_i
-  #puts (100-rate).to_i
+  @total = Total.create(
+    :lecture => lesson["name"],
+    :result => res[0][0].to_i,
+    :possible => res[0][1].to_i
+  )
   res =  page.body.scan lesson["table"]
   #ap res
   res.each do |result|

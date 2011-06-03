@@ -1,0 +1,11 @@
+window.onload = function () {
+    var i=0;
+    <% @sum.each do |s| %>
+    var <%= sanitize s.lecture + 'pie' %> = Raphael(i, 10, 230, 260);
+    <%= sanitize s.lecture + 'pie' %>.g.text(115, 10, "<%= s.lecture %>").attr({"font-size": 10});
+    <%= sanitize s.lecture+ 'pie' %>.g.piechart(110, 100, 80, [<%= s.result.to_f/s.possible.to_f*100%>,<%= 100-(s.result.to_f/s.possible.to_f*100) %>],{legend:[],legendpos: "south"});
+    i = i+250;
+    <% end %>
+
+    
+};
