@@ -46,6 +46,7 @@ nav {
 	-ms-transition: All 0.5s ease-in-out;
     width:80%;
     height:85%;
+    border-radius:20px;
     border:1px solid #EEE;
     background-color:#FFF;
 }
