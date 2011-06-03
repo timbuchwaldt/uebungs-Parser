@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php
+    $database = new SQLite3('example.db');
+    $score_query = $database->query('SELECT * FROM results');
+    $scores = array();
+    while($score_data = $score_query->fetchArray()) {
+        $scores[$score_data['lecture']][] = $score_data;
+    }
+    var_dump($scores);
+?>
 <html>
     <head>
         <!-- Für unseren Lieblingsbrowser aus dem Hause Microsoft: -->
@@ -8,7 +17,7 @@
 
         <!-- Sonstiger HEAD-Kram -->
         <meta charset="utf-8">
-        <title>StudyScores 0.3</title>
+        <title>StudyScores 0.3 <?='PHP Powered'?></title>
         <link href="studyscores.css" rel="stylesheet" type="text/css" />
 
         <script type="text/javascript">
@@ -44,7 +53,7 @@
     
     <body>
         <header>
-            <h1>StudyScores V0.2</h1>
+            <h1>StudyScores V0.3</h1>
             <nav>
                 <input type="button" name="prev" value="Previous Slide" onclick="open_slide(--_current_slide)" />
                 <input type="button" name="next" value="Next Slide" onclick="open_slide(++_current_slide)" />
