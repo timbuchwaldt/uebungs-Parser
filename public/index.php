@@ -6,7 +6,6 @@
     while($score_data = $score_query->fetchArray()) {
         $scores[$score_data['lecture']][] = $score_data;
     }
-    var_dump($scores);
 ?>
 <html>
     <head>
@@ -21,8 +20,8 @@
         <link href="studyscores.css" rel="stylesheet" type="text/css" />
 
         <script type="text/javascript">
-            var _current_slide = 2;
-            var SLIDE_NUM = 3
+            var _current_slide = <?=ceil(count($scores) / 2)?>;
+            var SLIDE_NUM = <?=count($scores)?>;
 
             function open_slide(num) {
                 // Grenzüberschreitungen verhindern
@@ -51,7 +50,7 @@
         </script>
     </head>
     
-    <body>
+    <body onload="open_slide(_current_slide)">
         <header>
             <h1>StudyScores V0.3</h1>
             <nav>
@@ -60,21 +59,47 @@
             </nav>
         </header>
         <div id="slide_area">
-            <div id="1" class="slide left">
+<?php
+    $i = 1;
+    foreach ($scores as $lecture => $data) {
+        // Parse scores from crappy db structure :-D
+        $hw_possible_sum = 0;
+        $hw_result_sum = 0;
+        $on_possible_sum = 0;
+        $on_result_sum = 0;
+        
+        foreach ($data as $element) {
+            $hw_possible_sum += $element['hw_possible'];
+            $hw_result_sum += $element['hw_result'];
+            $on_possible_sum += $element['on_possible'];
+            $on_result_sum += $element['on_result'];
+        }
+?>
+            <div id="<?=$i++?>" class="slide">
                 <section class="slide_content">
-                    <h2>Datenstrukturen und Algorithmen</h2>
-                <section>
-            </div>
-            <div id="2" class="slide front">
-                <section class="slide_content">
-                    <h2>Lineare Algebra für Informatiker</h2>
+                    <h2><?=$lecture?></h2>
+                    <table width="100%">
+                        <tr>
+                            <td align="right">
+                                <p class="score"><?=$hw_result_sum.'/'.$hw_possible_sum?></p>
+                            </td>
+                            <td align="right">
+                                <p class="score"><?=$on_result_sum.'/'.$on_possible_sum?></p>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <p class="description">hausaufgabenPUNKTE</p>
+                            </td>
+                            <td align="right">
+                                <p class="description">onlinePUNKTE</p>
+                            </td>                            
+                        </tr>
+                     </table>
                 </section>
             </div>
-            <div id="3" class="slide right">
-                <section class="slide_content">
-                    <h2>Formale Systeme, Automaten, Prozesse</h2>
-                </section>
-            </div>
+<?php
+    }
+?>
         </div>
     </body>
 </html>

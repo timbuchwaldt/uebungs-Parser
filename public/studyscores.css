@@ -2,8 +2,10 @@ body {
     margin:0;
     font-family:sans;
     background: #00295f;
-    background-image: url("image1.jpeg"), url("image2.jpeg");
-    background-repeat: repeat-x, repeat;
+    background-image: url("wood.jpg");
+    background-position: center;
+/*    background-image: url("image1.jpeg"), url("image2.jpeg");
+    background-repeat: repeat-x, repeat; */
 }
 
 header {
@@ -87,4 +89,17 @@ nav {
 
 .slide_content {
     height:100%;
+}
+
+/* Text styles */
+
+.score {
+    font-size:8em;
+    margin:0;
+}
+
+.description {
+    margin:0;
+    font-size:2em;
+    font-weight:bold;
 }
