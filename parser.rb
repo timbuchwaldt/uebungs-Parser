@@ -7,7 +7,7 @@ require 'data_mapper'
 require 'models'
 DataMapper.finalize
 #User-Settings
-MATNR= "307852" #Matrikelnummer hier eintragem
+MATNR=  HighLine::ask("Enter your MatrikelNr:  " ) { |q| q.echo }
 PASSWD= HighLine::ask("Enter your password:  " ) { |q| q.echo = "" }
 
 #Automated Setup
