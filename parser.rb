@@ -1,4 +1,6 @@
-require 'rubygems'
+require "rubygems"
+require "bundler/setup"
+
 require 'mechanize'
 require 'awesome_print'
 require 'highline/import'

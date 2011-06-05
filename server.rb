@@ -1,5 +1,6 @@
-# Includes
-require 'rubygems'
+require "rubygems"
+require "bundler/setup"
+
 require 'sinatra'
 require 'erb'
 require 'data_mapper'
