@@ -4,6 +4,8 @@ GEM
     addressable (2.2.6)
     awesome_print (0.4.0)
     bcrypt-ruby (2.1.4)
+    data_objects (0.10.6)
+      addressable (~> 2.1)
     datamapper (1.1.0)
       dm-aggregates (= 1.1.0)
       dm-constraints (= 1.1.0)
@@ -20,12 +22,18 @@ GEM
       dm-core (~> 1.1.0)
     dm-core (1.1.0)
       addressable (~> 2.2.4)
+    dm-do-adapter (1.1.0)
+      data_objects (~> 0.10.2)
+      dm-core (~> 1.1.0)
     dm-migrations (1.1.0)
       dm-core (~> 1.1.0)
     dm-serializer (1.1.0)
       dm-core (~> 1.1.0)
       fastercsv (~> 1.5.4)
       json (~> 1.4.6)
+    dm-sqlite-adapter (1.1.0)
+      dm-do-adapter (~> 1.1.0)
+      do_sqlite3 (~> 0.10.2)
     dm-timestamps (1.1.0)
       dm-core (~> 1.1.0)
     dm-transactions (1.1.0)
@@ -39,7 +47,10 @@ GEM
       uuidtools (~> 2.1.2)
     dm-validations (1.1.0)
       dm-core (~> 1.1.0)
+    do_sqlite3 (0.10.6)
+      data_objects (= 0.10.6)
     fastercsv (1.5.4)
+    highline (1.6.2)
     json (1.4.6)
     mechanize (1.0.0)
       nokogiri (>= 1.2.1)
@@ -58,5 +69,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   datamapper
+  dm-sqlite-adapter
+  highline
   mechanize
   sinatra

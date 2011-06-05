@@ -1,10 +1,8 @@
-require "rubygems"
+require 'rubygems'
+require 'bundler/setup'
+Bundler.require(:default)
 
-require 'sinatra'
 require 'erb'
-require 'data_mapper'
-require 'models'
-require 'awesome_print'
 
 require 'helper'
 # Setup
