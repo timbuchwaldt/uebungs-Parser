@@ -10,6 +10,7 @@
         <meta charset="utf-8">
         <title>StudyScores 0.3</title>
         <link href="/studyscores.css" rel="stylesheet" type="text/css" />
+        <link href="/csscharts.css" rel="stylesheet" type="text/css" />
 
         <script type="text/javascript" charset="utf-8" src="/raphael.js"></script>
         <script type="text/javascript" charset="utf-8" src="/g.raphael-min.js"></script>
@@ -56,6 +57,7 @@
                 <input type="button" name="next" value="Next Slide" onclick="open_slide(++_current_slide)" />
             </nav>
         </header>
+        
         <div id="slide_area"> 
             <% start = 1%>
             <% @sum.each do |s| %>
@@ -63,6 +65,85 @@
                         <section class="slide_content"> 
                             <h2><%= s.lecture%></h2> 
                             <p><%= s.result%>/<%= s.possible%></p>
+                            <ul class="yAxis"> 
+                            	<li>100</li> 
+                            	<li>90</li> 
+                            	<li>80</li> 
+                            	<li>70</li> 
+                            	<li>60</li> 
+                            	<li>50</li> 
+                            	<li>40</li> 
+                            	<li>30</li> 
+                            	<li>20</li> 
+                            	<li>10</li> 
+
+                            </ul> 
+                            	<dl class="csschart"> 
+
+                            		<dt>Mon</dt> 
+                            		<dd class="p36"><span><b>36</b></span></dd> 
+                            		<dd class="sub p30" ><span><b>30</b></span></dd> 
+
+                            		<dt>Tue</dt> 
+                            		<dd class="p45"><span><b>45</b></span></dd> 
+                            		<dd class="sub p35"><span><b>35</b></span></dd>	
+
+                            		<dt>Wed</dt> 
+                            		<dd class="p41"><span><b>41</b></span></dd> 
+                            		<dd class="sub p21"><span><b>21</b></span></dd>	
+
+                            		<dt>Thu</dt> 
+                            		<dd class="p48"><span><b>48</b></span></dd> 
+                            		<dd class="sub p30" ><span><b>30</b></span></dd> 
+
+                            		<dt>Fri</dt> 
+                            		<dd class="p55"><span><b>55</b></span></dd> 
+                            		<dd class="sub p15" ><span><b>15</b></span></dd> 
+
+                            		<dt>Sat</dt> 
+                            		<dd class="p80"><span><b>80</b></span></dd> 
+                            		<dd class="sub p71" ><span><b>71</b></span></dd> 
+
+                            		<dt>Sun</dt> 
+                            		<dd class="p72"><span><b>72</b></span></dd> 
+                            		<dd class="sub p53" ><span><b>53</b></span></dd> 
+
+                            		<dt>Mon</dt> 
+                            		<dd class="p71"><span><b>71</b></span></dd> 
+                            		<dd class="sub p37" ><span><b>37</b></span></dd> 
+
+                            		<dt>Tue</dt> 
+                            		<dd class="p64"><span><b>64</b></span></dd> 
+                            		<dd class="sub p28" ><span><b>28</b></span></dd> 
+
+                            		<dt>Wed</dt> 
+                            		<dd class="p55"><span><b>55</b></span></dd> 
+                            		<dd class="sub p30" ><span><b>30</b></span></dd> 
+
+                            		<dt>Thu</dt> 
+                            		<dd class="p62"><span><b>62</b></span></dd> 
+                            		<dd class="sub p50" ><span><b>50</b></span></dd> 
+
+                            		<dt>Fri</dt> 
+                            		<dd class="p44"><span><b>44</b></span></dd> 
+                            		<dd class="sub p40" ><span><b>40</b></span></dd> 
+
+                            </dl> 
+                            <ul class="xAxis"> 
+                            	<li>Mon</li> 
+                            	<li>Tue</li> 
+                            	<li>Wed</li> 
+                            	<li>Thu</li> 
+                            	<li>Fri</li> 
+                            	<li>Sat</li> 
+                            	<li>Sun</li> 
+                            	<li>Mon</li> 
+                            	<li>Tue</li> 
+                            	<li>Wed</li> 
+                            	<li>Thu</li> 
+                            	<li>Fri</li> 
+
+                            </ul>
                             <table> 
                                 <thead>
                                     <tr><td>HW</td><td>von</td><td>ON</td><td>von</td></tr>
