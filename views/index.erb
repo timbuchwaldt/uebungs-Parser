@@ -1,19 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Für unseren Lieblingsbrowser aus dem Hause Microsoft: -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<script type="text/javascript" charset="utf-8" src="/raphael.js"></script>
-<script type="text/javascript" charset="utf-8" src="/g.raphael-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/g.pie.js"></script>
-<script type="text/javascript" charset="utf-8" src="/g.bar.js"></script>
-<script type="text/javascript" charset="utf-8" src="/script.js"></script>
-<head>
-	<title>Übungs-Punkte</title>
-	
-</head>
+        <!-- Sonstiger HEAD-Kram -->
+        <meta charset="utf-8">
+        <title>StudyScores 0.3</title>
+        <link href="/studyscores.css" rel="stylesheet" type="text/css" />
 
-<body>
-<%= @greeting %>
-</body>
+        <script type="text/javascript" charset="utf-8" src="/raphael.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/g.raphael-min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/g.pie.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/g.bar.js"></script>
+<!--        <script type="text/javascript" charset="utf-8" src="/script.js"></script> -->
+        
+        <script type="text/javascript">
+            var _current_slide = 1;
+            var SLIDE_NUM = <%= @sum.size %>;
+
+            function open_slide(num) {
+                // Grenzüberschreitungen verhindern
+                num = Math.max(1, num);
+                num = Math.min(num, SLIDE_NUM);
+                _current_slide = num;
+                
+                // Alles bis auf 3 Slides unsichtbar schalten
+                for(i = 1; i <= SLIDE_NUM; i++) {
+                    position = 'invisible';
+                    switch(i) {
+                        case num - 1:
+                            position = 'left';
+                            break;
+                        case num:
+                            position = 'front';
+                            break;
+                        case num + 1:
+                            position = 'right';
+                            break;
+                    }
+
+                    document.getElementById("" + i).className = "slide " + position;
+                }
+            }
+        </script>
+    </head>
+    
+    <body onload="open_slide(_current_slide)">
+        <header>
+            <h1>StudyScores V0.3</h1>
+            <nav>
+                <input type="button" name="prev" value="Previous Slide" onclick="open_slide(--_current_slide)" />
+                <input type="button" name="next" value="Next Slide" onclick="open_slide(++_current_slide)" />
+            </nav>
+        </header>
+        <div id="slide_area"> 
+            <% start = 1%>
+            <% @sum.each do |s| %>
+                    <div id="<%= start %>" class="slide"> 
+                        <section class="slide_content"> 
+                            <h2><%= s.lecture%></h2> 
+                            <p><%= s.result%>/<%= s.possible%></p> 
+                            <% @results.all(:lecture => s.lecture).each do |result| %>
+                            <%= result.hw_result %> / <%= result.hw_possible %>
+                            <% end %>
+                        </section> 
+                    </div> 
+                    <% start += 1%>
+                    <% end %>
+                </div>
+    </body>
 </html>

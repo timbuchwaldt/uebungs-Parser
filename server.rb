@@ -12,11 +12,11 @@ DataMapper.setup(:default, "sqlite://#{Dir.pwd}/test.db")
 
 
 get '/' do  
+  @sum = Total.all
+  @results = Result
   erb :index
 end
 
 get '/script.js' do
-  @sum = Total.all
-  ap Result.all(:fields => [:lecture])
   erb :script
 end
