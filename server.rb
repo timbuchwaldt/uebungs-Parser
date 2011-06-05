@@ -3,7 +3,7 @@ require 'bundler/setup'
 Bundler.require(:default)
 
 require 'erb'
-
+require 'models'
 require 'helper'
 # Setup
 DataMapper.setup(:default, "sqlite://#{Dir.pwd}/test.db")

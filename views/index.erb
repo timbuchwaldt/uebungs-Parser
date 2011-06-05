@@ -62,10 +62,15 @@
                     <div id="<%= start %>" class="slide"> 
                         <section class="slide_content"> 
                             <h2><%= s.lecture%></h2> 
-                            <p><%= s.result%>/<%= s.possible%></p> 
+                            <p><%= s.result%>/<%= s.possible%></p>
+                            <table> 
+                                <thead>
+                                    <tr><td>HW</td><td>von</td><td>ON</td><td>von</td></tr>
+                                </thead>
                             <% @results.all(:lecture => s.lecture).each do |result| %>
-                            <%= result.hw_result %> / <%= result.hw_possible %>
+                            <tr><td><%= result.hw_result %></td><td><%= result.hw_possible %> </td><td><%= result.on_result %></td><td><%= result.on_possible %> </td><td><%= result.hw_percentage %> %</td> </tr>
                             <% end %>
+                            </table>
                         </section> 
                     </div> 
                     <% start += 1%>
